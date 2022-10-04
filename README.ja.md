@@ -7,3 +7,9 @@ SL: キータイプ矯正ソフト
 a,l,F,c オプションが有効です。機能は実行して確かめてください。
 
 Copyright 1993,1998,2014 Toyoda Masashi (mtoyoda@acm.org)
+
+やあ、
+
+私は git を使って練習しています。これは read me ファイルに追加されたテキストです。
+
+

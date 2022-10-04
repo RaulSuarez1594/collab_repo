@@ -3,9 +3,10 @@
  *        Copyright 1993,1998,2014
  *                  Toyoda Masashi
  *                  (mtoyoda@acm.org)
- *        Last Modified: 2014/06/03
+ *        Last Modified: 10/04/2022
  *========================================
  */
+/* sl version 5.03 : Does nothing actually      by Raul Suarez    2022/10/04 */
 /* sl version 5.02 : Fix compiler warnings.                                  */
 /*                                              by Jeff Schwab    2014/06/03 */
 /* sl version 5.01 : removed cursor and handling of IO                       */
@@ -41,13 +42,13 @@
 #include <unistd.h>
 #include "sl.h"
 
-void add_smoke(int y, int x);
-void add_man(int y, int x);
-int add_C51(int x);
-int add_D51(int x);
-int add_sl(int x);
-void option(char *str);
-int my_mvaddstr(int y, int x, char *str);
+void add_smoke(int y, int x, int z);
+void add_man(int y, int x, int z);
+int add_C51(int x, int z);
+int add_D51(int x, int y, int z);
+int add_sl(int x, int y, int z);
+void option(char *str, double *ptr);
+int my_mvaddstr(int z, int y, int x, char *str);
 
 int ACCIDENT  = 0;
 int LOGO      = 0;
