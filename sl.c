@@ -36,6 +36,9 @@
 /* sl version 1.00 : SL runs vomitting out smoke.                            */
 /*                                              by Toyoda Masashi 1992/12/11 */
 
+/*add stio.h and stdlib.h*/
+#include <stdio.h>
+#include <stdlib.h>
 #include <curses.h>
 #include <signal.h>
 #include <unistd.h>
