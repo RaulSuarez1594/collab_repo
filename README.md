@@ -1,5 +1,7 @@
 1.3 collaboration -- Linux_Module 02 
 
+Arturo Ledesma Magaña (CTEP)
+
 SL(1): Cure your bad habit of mistyping
 
 SL (Steam Locomotive) runs across your terminal when you type "sl" as
