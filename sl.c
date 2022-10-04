@@ -57,6 +57,25 @@ int ACCIDENT  = 0;
 int LOGO      = 0;
 int FLY       = 0;
 int C51       = 0;
+/*
+function receives two parameters and 
+returns the sum,rest,mult,div of the same
+*/
+
+int sum_b(int a, int b){
+
+	return a + b;
+}
+int rest_b(int a, int b){
+	return a - b;
+}
+int mult_b(int a, int b){
+
+	return a * b;
+}
+int div_b(int a, int b){
+	return a / b;
+}
 
 int my_mvaddstr(int y, int x, char *str)
 {
