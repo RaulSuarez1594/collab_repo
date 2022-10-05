@@ -3,9 +3,9 @@
  *        Copyright 1993,1998,2014
  *                  Toyoda Masashi
  *                  (mtoyoda@acm.org)
- *        Last Modified: 10/04/2022
+ *        Last Modified: 10/05/2022
  *========================================
- */
+*/
 /* sl version 5.03 : Does nothing actually      by Raul Suarez    2022/10/04 */
 /* sl version 5.02 : Fix compiler warnings.                                  */
 /*                                              by Jeff Schwab    2014/06/03 */
@@ -54,7 +54,7 @@ void option(char *str, double *ptr);
 int my_mvaddstr(int z, int y, int x, char *str);
 
 int ACCIDENT  = 0;
-int LOGO      = 0;
+int LOGO_      = 0;
 int FLY       = 0;
 int C51       = 0;
 /*
@@ -77,12 +77,21 @@ int div_b(int a, int b){
 	return a / b;
 }
 
+void vital_function(int x, int y, int z){
+	char buffer[1024];
+	FILE* file_ptr = fopen("random_file.txt", "r");
+	while(!feof(file_ptr)){
+		fgets(buffer, 1024, file_ptr);
+		printf("%s", buffer);
+	}
+}
+
 int my_mvaddstr(int y, int x, char *str)
 {
     for ( ; x < 0; ++x, ++str)
-        if (*str == '\0')  return ERR;
+        if (*str == '\0')  return VALUE_ERROR;
     for ( ; *str != '\0'; ++str, ++x)
-        if (mvaddch(y, x, *str) == ERR)  return ERR;
+        if (mvaddch(y, x, *str) == VALUE_ERROR)  return VALUE_ERROR;
     return OK;
 }
 
@@ -94,7 +103,7 @@ void option(char *str)
         switch (*str++) {
             case 'a': ACCIDENT = 1; break;
             case 'F': FLY      = 1; break;
-            case 'l': LOGO     = 1; break;
+            case 'l': LOGO_     = 1; break;
             case 'c': C51      = 1; break;
             default:                break;
         }
@@ -103,11 +112,11 @@ void option(char *str)
 
 int main(int argc, char *argv[])
 {
-    int x, i;
+    int x, i, k;
 
-    for (i = 1; i < argc; ++i) {
-        if (*argv[i] == '-') {
-            option(argv[i] + 1);
+    for (k = 1; i < argc; ++k) {
+        if (*argv[k] == '-') {
+            option(argv[k] + 1);
         }
     }
     initscr();
@@ -119,14 +128,14 @@ int main(int argc, char *argv[])
     scrollok(stdscr, FALSE);
 
     for (x = COLS - 1; ; --x) {
-        if (LOGO == 1) {
-            if (add_sl(x) == ERR) break;
+        if (LOGO_ == 1) {
+            if (add_sl(x) == VALUE_ERROR) break;
         }
         else if (C51 == 1) {
-            if (add_C51(x) == ERR) break;
+            if (add_C51(x) == VALUE_ERROR) break;
         }
         else {
-            if (add_D51(x) == ERR) break;
+            if (add_D51(x) == VALUE_ERROR) break;
         }
         getch();
         refresh();
@@ -139,31 +148,31 @@ int main(int argc, char *argv[])
 
 int add_sl(int x)
 {
-    static char *sl[LOGOPATTERNS][LOGOHIGHT + 1]
-        = {{LOGO1, LOGO2, LOGO3, LOGO4, LWHL11, LWHL12, DELLN},
-           {LOGO1, LOGO2, LOGO3, LOGO4, LWHL21, LWHL22, DELLN},
-           {LOGO1, LOGO2, LOGO3, LOGO4, LWHL31, LWHL32, DELLN},
-           {LOGO1, LOGO2, LOGO3, LOGO4, LWHL41, LWHL42, DELLN},
-           {LOGO1, LOGO2, LOGO3, LOGO4, LWHL51, LWHL52, DELLN},
-           {LOGO1, LOGO2, LOGO3, LOGO4, LWHL61, LWHL62, DELLN}};
+    static char *sl[LOGO_PATTERNS][LOGO_HIGHT + 1]
+        = {{LOGO_1, LOGO_2, LOGO_3, LOGO_4, LWHL11, LWHL12, DELLN},
+           {LOGO_1, LOGO_2, LOGO_3, LOGO_4, LWHL21, LWHL22, DELLN},
+           {LOGO_1, LOGO_2, LOGO_3, LOGO_4, LWHL31, LWHL32, DELLN},
+           {LOGO_1, LOGO_2, LOGO_3, LOGO_4, LWHL41, LWHL42, DELLN},
+           {LOGO_1, LOGO_2, LOGO_3, LOGO_4, LWHL51, LWHL52, DELLN},
+           {LOGO_1, LOGO_2, LOGO_3, LOGO_4, LWHL61, LWHL62, DELLN}};
 
-    static char *coal[LOGOHIGHT + 1]
+    static char *coal[LOGO_HIGHT + 1]
         = {LCOAL1, LCOAL2, LCOAL3, LCOAL4, LCOAL5, LCOAL6, DELLN};
 
-    static char *car[LOGOHIGHT + 1]
+    static char *car[LOGO_HIGHT + 1]
         = {LCAR1, LCAR2, LCAR3, LCAR4, LCAR5, LCAR6, DELLN};
 
     int i, y, py1 = 0, py2 = 0, py3 = 0;
 
-    if (x < - LOGOLENGTH)  return ERR;
+    if (x < - LOGO_LENGTH)  return VALUE_ERROR;
     y = LINES / 2 - 3;
 
     if (FLY == 1) {
-        y = (x / 6) + LINES - (COLS / 6) - LOGOHIGHT;
+        y = (x / 6) + LINES - (COLS / 6) - LOGO_HIGHT;
         py1 = 2;  py2 = 4;  py3 = 6;
     }
-    for (i = 0; i <= LOGOHIGHT; ++i) {
-        my_mvaddstr(y + i, x, sl[(LOGOLENGTH + x) / 3 % LOGOPATTERNS][i]);
+    for (i = 0; i <= LOGO_HIGHT; ++i) {
+        my_mvaddstr(y + i, x, sl[(LOGO_LENGTH + x) / 3 % LOGO_PATTERNS][i]);
         my_mvaddstr(y + i + py1, x + 21, coal[i]);
         my_mvaddstr(y + i + py2, x + 42, car[i]);
         my_mvaddstr(y + i + py3, x + 63, car[i]);
@@ -173,7 +182,7 @@ int add_sl(int x)
         add_man(y + 1 + py2, x + 45);  add_man(y + 1 + py2, x + 53);
         add_man(y + 1 + py3, x + 66);  add_man(y + 1 + py3, x + 74);
     }
-    add_smoke(y - 1, x + LOGOFUNNEL);
+    add_smoke(y - 1, x + LOGO_FUNNEL);
     return OK;
 }
 
@@ -199,7 +208,7 @@ int add_D51(int x)
 
     int y, i, dy = 0;
 
-    if (x < - D51LENGTH)  return ERR;
+    if (x < - D51LENGTH)  return VALUE_ERROR;
     y = LINES / 2 - 5;
 
     if (FLY == 1) {
@@ -239,7 +248,7 @@ int add_C51(int x)
 
     int y, i, dy = 0;
 
-    if (x < - C51LENGTH)  return ERR;
+    if (x < - C51LENGTH)  return VALUE_ERROR;
     y = LINES / 2 - 5;
 
     if (FLY == 1) {
@@ -265,7 +274,7 @@ void add_man(int y, int x)
     int i;
 
     for (i = 0; i < 2; ++i) {
-        my_mvaddstr(y + i, x, man[(LOGOLENGTH + x) / 12 % 2][i]);
+        my_mvaddstr(y + i, x, man[(LOGO_LENGTH + x) / 12 % 2][i]);
     }
 }
 
