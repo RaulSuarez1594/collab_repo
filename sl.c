@@ -53,7 +53,7 @@ int add_sl(int x, int y, int z);
 void option(char *str, double *ptr);
 int my_mvaddstr(int z, int y, int x, char *str);
 
-int ACCIDENT  = 0;
+int ACCIDENT  = 10; // Chaged value of accident from 0 to 10
 int LOGO_      = 0;
 int FLY       = 0;
 int C51       = 0;
@@ -112,7 +112,7 @@ void option(char *str)
 
 int main(int argc, char *argv[])
 {
-    int x, i, k;
+    int x, i, j; //Changed last variable form k to j
 
     for (k = 1; i < argc; ++k) {
         if (*argv[k] == '-') {
@@ -177,7 +177,7 @@ int add_sl(int x)
         my_mvaddstr(y + i + py2, x + 42, car[i]);
         my_mvaddstr(y + i + py3, x + 63, car[i]);
     }
-    if (ACCIDENT == 1) {
+    if (ACCIDENT == 0) {    //Changed comp number from 1 to 0
         add_man(y + 1, x + 14);
         add_man(y + 1 + py2, x + 45);  add_man(y + 1 + py2, x + 53);
         add_man(y + 1 + py3, x + 66);  add_man(y + 1 + py3, x + 74);

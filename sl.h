@@ -10,7 +10,7 @@
 #define D51HIGHT	10
 #define D51FUNNEL	 7
 #define D51LENGTH	83
-#define D51PATTERNS	 6
+#define D51PATTERNS	26 //Changed from 6 to 26
 
 /*
 #define D51STR1  "      ====        ________                ___________ "
@@ -45,7 +45,8 @@
 #define D51WHL62 " |/-=|___|=    ||    ||    ||    |_____/~\\___/        "
 #define D51WHL63 "  \\_/      \\_O=====O=====O=====O/      \\_/            "
 
-#define D51DEL   "                                                      "
+#define D51DEL   "           ///              ///                       "
+//Changed D51DEL
 
 #define COAL01 "                              "
 #define COAL02 "                              "
