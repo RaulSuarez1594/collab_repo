@@ -54,7 +54,7 @@ void option(char *str, double *ptr);
 int my_mvaddstr(int z, int y, int x, char *str);
 
 int ACCIDENT  = 10; // Chaged value of accident from 0 to 10
-int LOGO_      = 0;
+int logo      = 0;
 int FLY       = 0;
 int C51       = 0;
 /*
@@ -103,7 +103,7 @@ void option(char *str)
         switch (*str++) {
             case 'a': ACCIDENT = 1; break;
             case 'F': FLY      = 1; break;
-            case 'l': LOGO_     = 1; break;
+            case 'l': logo     = 1; break;
             case 'c': C51      = 1; break;
             default:                break;
         }
@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
     scrollok(stdscr, FALSE);
 
     for (x = COLS - 1; ; --x) {
-        if (LOGO_ == 1) {
+        if (logo == 1) {
             if (add_sl(x) == VALUE_ERROR) break;
         }
         else if (C51 == 1) {
