@@ -24,6 +24,10 @@ A generic makefile for starting projects
 
     words here
 
+    Added words because i'm bored
+
+    I'm adding even more words to follow the review request
+
 #Thanks to:
 
 Everyone that actually created this project and not myself who cloned a forked repo. Privately endowed research university founded in 1861 — is dedicated to advancing knowledge and educating students in science, technology, and other areas of scholarship that will best serve the nation and the world in the 21st century. Learn more about MIT. Through MITx, the Institute furthers its commitment to improving education worldwide.
