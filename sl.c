@@ -112,7 +112,8 @@ void option(char *str)
 
 int main(int argc, char *argv[])
 {
-    int x, i, j; //Changed last variable form k to j
+    int q, i, j; //Changed last variable form k to j
+		//Changed this declaration of x to q to follow the review request
 
     for (k = 1; i < argc; ++k) {
         if (*argv[k] == '-') {
